@@ -48,9 +48,16 @@ class Extension extends \Twig_Extension {
 
 	public function get_header( \Twig_Environment $env, $context, $name = null ) {
 
-		do_action( 'get_header', $name );
+		try {
+			$return = twig_include( $env, $context, $this->get_templates( 'header', $name ) );
+			do_action( 'get_header', $name );
+		} catch ( \Exception $e ) {
+			ob_start();
+			get_header( $name );
+			$return = ob_get_clean();
+		}
 
-		return twig_include( $env, $context, $this->get_templates( 'header', $name ) );
+		return $return;
 	}
 
 	public function get_templates( $slug, $name = null ) {
@@ -67,9 +74,16 @@ class Extension extends \Twig_Extension {
 
 	public function get_footer( \Twig_Environment $env, $context, $name = null ) {
 
-		do_action( 'get_footer', $name );
+		try {
+			$return = twig_include( $env, $context, $this->get_templates( 'footer', $name ) );
+			do_action( 'get_footer', $name );
+		} catch ( \Exception $e ) {
+			ob_start();
+			get_footer( $name );
+			$return = ob_get_clean();
+		}
 
-		return twig_include( $env, $context, $this->get_templates( 'footer', $name ) );
+		return $return;
 	}
 
 	public function get_sidebar( \Twig_Environment $env, $context, $name = null ) {
