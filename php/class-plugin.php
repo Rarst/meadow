@@ -8,14 +8,14 @@ namespace Rarst\Meadow;
 class Plugin extends \Pimple {
 
 	/**
-	 * @param array $options
+	 * @param array $values
 	 */
-	public function __construct( $options = array() ) {
+	public function __construct( $values = array() ) {
 
-		$this['twig.options']     = array();
-		$this['twig.directories'] = array();
+		$defaults['twig.options']     = array();
+		$defaults['twig.directories'] = array();
 
-		$this['twig.loader'] = function ( $meadow ) {
+		$defaults['twig.loader'] = function ( $meadow ) {
 
 			// this needs to be lazy or theme switchers and alike explode it
 			$directories = array_unique(
@@ -32,9 +32,9 @@ class Plugin extends \Pimple {
 			return new \Twig_Loader_Filesystem( $directories );
 		};
 
-		$this['twig.undefined'] = array( __CLASS__, 'undefined_function' );
+		$defaults['twig.undefined'] = array( __CLASS__, 'undefined_function' );
 
-		$this['twig.environment'] = function ( $meadow ) {
+		$defaults['twig.environment'] = function ( $meadow ) {
 			$environment      = new \Twig_Environment( $meadow['twig.loader'], $meadow['twig.options'] );
 			$meadow_extension = new Extension();
 			$environment->addExtension( $meadow_extension );
@@ -49,13 +49,11 @@ class Plugin extends \Pimple {
 			return $environment;
 		};
 
-		$this['hierarchy'] = function () {
+		$defaults['hierarchy'] = function () {
 			return new Template_Hierarchy();
 		};
 
-		foreach ( $options as $key => $value ) {
-			$this[$key] = $value;
-		}
+		parent::__construct( array_merge( $defaults, $values ) );
 	}
 
 	/**
