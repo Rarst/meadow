@@ -42,11 +42,9 @@ class Plugin extends \Pimple {
 			return $environment;
 		};
 
-		$this['hierarchy'] = $this->share(
-			function () {
-				return new Template_Hierarchy();
-			}
-		);
+		$this['hierarchy'] = function () {
+			return new Template_Hierarchy();
+		};
 
 		foreach ( $options as $key => $value ) {
 			$this[$key] = $value;
