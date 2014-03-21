@@ -13,16 +13,23 @@ class Plugin extends \Pimple {
 	public function __construct( $options = array() ) {
 
 		$this['twig.options']     = array();
-		$this['twig.directories'] = array_unique(
-			array(
-				get_stylesheet_directory(),
-				get_template_directory(),
-				plugin_dir_path( __DIR__ ) . 'twig',
-			)
-		);
+		$this['twig.directories'] = array();
 
 		$this['twig.loader'] = function ( $meadow ) {
-			return new \Twig_Loader_Filesystem( $meadow['twig.directories'] );
+
+			// this needs to be lazy or theme switchers and alike explode it
+			$directories = array_unique(
+				array_merge(
+					array(
+						get_stylesheet_directory(),
+						get_template_directory(),
+						plugin_dir_path( __DIR__ ) . 'twig',
+					),
+					$meadow['twig.directories']
+				)
+			);
+
+			return new \Twig_Loader_Filesystem( $directories );
 		};
 
 		$this['twig.undefined'] = array( __CLASS__, 'undefined_function' );
