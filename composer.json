@@ -17,8 +17,8 @@
 	},
 	"require"     : {
 		"composer/installers": "~1.0",
-		"pimple/pimple"      : "~1.0",
-		"twig/twig"          : "~1.12"
+		"pimple/pimple"      : "~2.0",
+		"twig/twig"          : "~1.15"
 	},
 	"autoload"    : {
 		"classmap": ["php/"]
