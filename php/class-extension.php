@@ -48,16 +48,7 @@ class Extension extends \Twig_Extension {
 
 	public function get_header( \Twig_Environment $env, $context, $name = null ) {
 
-		try {
-			$return = twig_include( $env, $context, $this->get_templates( 'header', $name ) );
-			do_action( 'get_header', $name );
-		} catch ( \Twig_Error_Loader $e ) {
-			ob_start();
-			get_header( $name );
-			$return = ob_get_clean();
-		}
-
-		return $return;
+		return $this->get_template( $env, $context, 'header', $name );
 	}
 
 	public function get_templates( $slug, $name = null ) {
@@ -74,23 +65,12 @@ class Extension extends \Twig_Extension {
 
 	public function get_footer( \Twig_Environment $env, $context, $name = null ) {
 
-		try {
-			$return = twig_include( $env, $context, $this->get_templates( 'footer', $name ) );
-			do_action( 'get_footer', $name );
-		} catch ( \Twig_Error_Loader $e ) {
-			ob_start();
-			get_footer( $name );
-			$return = ob_get_clean();
-		}
-
-		return $return;
+		return $this->get_template( $env, $context, 'footer', $name );
 	}
 
 	public function get_sidebar( \Twig_Environment $env, $context, $name = null ) {
 
-		do_action( 'get_sidebar', $name );
-
-		return twig_include( $env, $context, $this->get_templates( 'sidebar', $name ) );
+		return $this->get_template( $env, $context, 'sidebar', $name );
 	}
 
 	public function get_template_part( \Twig_Environment $env, $context, $slug, $name = null ) {
@@ -108,5 +88,19 @@ class Extension extends \Twig_Extension {
 	public function get_search_form() {
 
 		return apply_filters( 'get_search_form', true );
+	}
+
+	protected function get_template( \Twig_Environment $env, $context, $type, $name = null ) {
+
+		try {
+			$return = twig_include( $env, $context, $this->get_templates( $type, $name ) );
+			do_action( 'get_' . $type, $name );
+		} catch ( \Twig_Error_Loader $e ) {
+			ob_start();
+			call_user_func( 'get_' . $type, $name );
+			$return = ob_get_clean();
+		}
+
+		return $return;
 	}
 }
