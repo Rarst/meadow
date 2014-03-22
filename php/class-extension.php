@@ -51,7 +51,7 @@ class Extension extends \Twig_Extension {
 		try {
 			$return = twig_include( $env, $context, $this->get_templates( 'header', $name ) );
 			do_action( 'get_header', $name );
-		} catch ( \Exception $e ) {
+		} catch ( \Twig_Error_Loader $e ) {
 			ob_start();
 			get_header( $name );
 			$return = ob_get_clean();
@@ -77,7 +77,7 @@ class Extension extends \Twig_Extension {
 		try {
 			$return = twig_include( $env, $context, $this->get_templates( 'footer', $name ) );
 			do_action( 'get_footer', $name );
-		} catch ( \Exception $e ) {
+		} catch ( \Twig_Error_Loader $e ) {
 			ob_start();
 			get_footer( $name );
 			$return = ob_get_clean();
