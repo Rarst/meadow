@@ -5,7 +5,7 @@ namespace Rarst\Meadow;
 /**
  * Main plugin class.
  */
-class Plugin extends \Pimple {
+class Core extends \Pimple {
 
 	/**
 	 * @param array $values
