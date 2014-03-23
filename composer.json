@@ -1,8 +1,7 @@
 {
 	"name"        : "rarst/meadow",
-	"description" : "",
+	"description" : "WordPress templating DSL",
 	"keywords"    : ["wordpress", "twig"],
-	"type"        : "wordpress-plugin",
 	"homepage"    : "https://github.com/Rarst/meadow",
 	"license"     : "MIT",
 	"authors"     : [
@@ -16,7 +15,6 @@
 		"issues": "https://github.com/Rarst/meadow/issues"
 	},
 	"require"     : {
-		"composer/installers": "~1.0",
 		"pimple/pimple"      : "~2.0",
 		"twig/twig"          : "~1.15"
 	},
