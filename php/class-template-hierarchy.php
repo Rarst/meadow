@@ -66,9 +66,11 @@ class Template_Hierarchy {
 	}
 
 	/**
+	 * @param string $fallback
+	 *
 	 * @return string
 	 */
-	public function query_template() {
+	public function query_template( $fallback ) {
 
 		$type      = substr( current_filter(), 0, - 9 ); // trim '_template' from end
 		$templates = array();
@@ -166,6 +168,10 @@ class Template_Hierarchy {
 		}
 
 		$template = locate_template( $templates );
+
+		if ( empty( $template ) ) {
+			$template = $fallback;
+		}
 
 		return apply_filters( 'meadow_query_template', $template, $type );
 	}
