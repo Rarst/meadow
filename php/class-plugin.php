@@ -32,13 +32,15 @@ class Plugin extends \Pimple {
 			return new \Twig_Loader_Filesystem( $directories );
 		};
 
-		$defaults['twig.undefined'] = array( __CLASS__, 'undefined_function' );
+		$defaults['twig.undefined_function'] = array( __CLASS__, 'undefined_function' );
+		$defaults['twig.undefined_filter']   = array( __CLASS__, 'undefined_filter' );
 
 		$defaults['twig.environment'] = function ( $meadow ) {
 			$environment      = new \Twig_Environment( $meadow['twig.loader'], $meadow['twig.options'] );
 			$meadow_extension = new Extension();
 			$environment->addExtension( $meadow_extension );
-			$environment->registerUndefinedFunctionCallback( $meadow['twig.undefined'] );
+			$environment->registerUndefinedFunctionCallback( $meadow['twig.undefined_function'] );
+			$environment->registerUndefinedFilterCallback( $meadow['twig.undefined_filter'] );
 
 			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 				$debug_extension = new \Twig_Extension_Debug();
@@ -81,6 +83,25 @@ class Plugin extends \Pimple {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Handler for fallback to WordPress filters for undefined Twig filters in template.
+	 *
+	 * @param string $filter_name
+	 *
+	 * @return bool|\Twig_SimpleFilter
+	 */
+	static function undefined_filter( $filter_name ) {
+
+		return new \Twig_SimpleFilter(
+			$filter_name,
+			function () use ( $filter_name ) {
+
+				return apply_filters( $filter_name, func_get_arg( 0 ) );
+			},
+			array( 'is_safe' => array( 'all' ) )
+		);
 	}
 
 	public function run() {
