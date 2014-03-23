@@ -104,11 +104,6 @@ class Core extends \Pimple {
 		);
 	}
 
-	public function run() {
-
-		$this->enable();
-	}
-
 	public function enable() {
 
 		/** @var Template_Hierarchy $hierarchy */
