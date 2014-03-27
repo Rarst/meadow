@@ -1,12 +1,12 @@
 # Meadow — WordPress Templating DSL
 
-Meadow is a theme templating solution, aiming to find a balance between native WordPress concepts and power of Twig dedicated templating language.
+Meadow is a theme templating solution, aiming to find a balance between native WordPress concepts and power of [Twig](http://twig.sensiolabs.org/) dedicated templating language.
 
 It is currently EXPERIMENTAL, treat it more like exploration and wishful thinking rather than hard promises.
 
 ## Installation
 
-Require package in your theme project with Composer:
+Require package in your theme project with [Composer](https://getcomposer.org/):
 
 ```bash
 composer require rarst/meadow:dev-master --no-update
@@ -22,7 +22,7 @@ $meadow->enable();
 
 ## Templating
 
-Meadow follows conventions of WordPress template hierarchy:
+Meadow follows conventions of WordPress [template hierarchy](https://codex.wordpress.org/Template_Hierarchy#Visual_Overview):
 
  - for example `index.php` becomes `index.twig`.
  - `{{ get_header() }}` will look for `header.twig` (with fallback to `header.php`)
@@ -40,7 +40,7 @@ WordPress filters set up to be available as Twig filters:
 {{ 'This is the title'|the_title }}
 ```
 
-Full range of Twig functionality is naturally available, including template inheritance:
+Full range of Twig functionality is naturally available, including [template inheritance](http://twig.sensiolabs.org/doc/templates.html#template-inheritance):
 
 ```twig
 {# single.twig #}
@@ -63,3 +63,11 @@ For example Meadow's Loop (and in future more concepts) is implemented as custom
 	{{ the_content() }}
 {% endloop %}
 ```
+
+## Template Examples
+
+In [Hybrid Wing](https://github.com/Rarst/hybrid-wing) theme (work in progress):
+
+ - [`index.twig`](https://github.com/Rarst/hybrid-wing/blob/master/index.twig)
+  - [`single.twig`](https://github.com/Rarst/hybrid-wing/blob/master/single.twig)
+   - [`single-post.twig`](https://github.com/Rarst/hybrid-wing/blob/master/single-post.twig)
