@@ -18,13 +18,23 @@ class Core extends \Pimple {
 		$defaults['twig.loader'] = function ( $meadow ) {
 
 			// this needs to be lazy or theme switchers and alike explode it
+
+			$stylesheet_dir  = get_stylesheet_directory();
+			$template_dir    = get_template_directory();
+			$calculated_dirs = array(
+				$stylesheet_dir,
+				$template_dir,
+				plugin_dir_path( __DIR__ ) . 'twig',
+			);
+
+			// enables explicit inheritance from parent theme in child
+			if ( $stylesheet_dir !== $template_dir ) {
+				$calculated_dirs[] = dirname( $template_dir );
+			}
+
 			$directories = array_unique(
 				array_merge(
-					array(
-						get_stylesheet_directory(),
-						get_template_directory(),
-						plugin_dir_path( __DIR__ ) . 'twig',
-					),
+					$calculated_dirs,
 					$meadow['twig.directories']
 				)
 			);

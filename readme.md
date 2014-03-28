@@ -51,6 +51,13 @@ Full range of Twig functionality is naturally available, including [template inh
 {% endblock %}
 ```
 
+To inherit parent template in child theme prepend it with folder's name:
+
+```twig
+{# child-theme/index.twig #}
+{% extends 'parent-theme/index.twig' %}
+```
+
 ## Domain Specific Language
 
 Meadow attempts not just "map" WordPress to Twig, but also meaningfully extend both to improve historically clunky WP constructs.
