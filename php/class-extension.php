@@ -75,9 +75,16 @@ class Extension extends \Twig_Extension {
 
 	public function get_template_part( \Twig_Environment $env, $context, $slug, $name = null ) {
 
-		do_action( "get_template_part_{$slug}", $slug, $name );
+		try {
+			$return = twig_include( $env, $context, $this->get_templates( $slug, $name ) );
+			do_action( "get_template_part_{$slug}", $slug, $name );
+		} catch ( \Twig_Error_Loader $e ) {
+			ob_start();
+			get_template_part( $slug, $name );
+			$return = ob_get_clean();
+		}
 
-		return twig_include( $env, $context, $this->get_templates( $slug, $name ) );
+		return $return;
 	}
 
 	/**
