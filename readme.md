@@ -30,19 +30,19 @@ Meadow follows conventions of WordPress [template hierarchy](https://codex.wordp
 
 Template Tags API (and PHP functions in general) are set up to work transparently from Twig templates:
 
-```twig
+```html+django
 {{ the_title() }}
 ```
 
 WordPress filters set up to be available as Twig filters:
 
-```twig
+```html+django
 {{ 'This is the title'|the_title }}
 ```
 
 Full range of Twig functionality is naturally available, including [template inheritance](http://twig.sensiolabs.org/doc/templates.html#template-inheritance):
 
-```twig
+```html+django
 {# single.twig #}
 {% extends 'index.twig' %}
 
@@ -53,7 +53,7 @@ Full range of Twig functionality is naturally available, including [template inh
 
 To inherit parent template in child theme prepend it with folder's name:
 
-```twig
+```html+django
 {# child-theme/index.twig #}
 {% extends 'parent-theme/index.twig' %}
 ```
@@ -64,7 +64,7 @@ Meadow attempts not just "map" WordPress to Twig, but also meaningfully extend b
 
 For example Meadow's Loop (and in future more concepts) is implemented as custom tag:
 
-```twig
+```html+django
 {% loop %}
 	<h2><a href="{{ the_permalink() }}">{{ the_title() }}</a></h2>
 	{{ the_content() }}
