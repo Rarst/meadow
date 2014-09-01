@@ -62,13 +62,26 @@ To inherit parent template in child theme prepend it with folder's name:
 
 Meadow attempts not just "map" WordPress to Twig, but also meaningfully extend both to improve historically clunky WP constructs.
 
-For example Meadow's Loop (and in future more concepts) is implemented as custom tag:
+This is primarily achieved by implementing custom Twig tags, abstracting away complexities for specific tasks.
+
+### Loop
 
 ```html+django
 {% loop %}
 	<h2><a href="{{ the_permalink() }}">{{ the_title() }}</a></h2>
 	{{ the_content() }}
 {% endloop %}
+```
+
+### Comments
+
+```html+django
+<ul class="comment-list">
+	{% comments %}
+	<li>
+		{{ comment_text() }}
+	{% endcomments %}
+</ul>
 ```
 
 ## Template Examples
