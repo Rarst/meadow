@@ -42,7 +42,8 @@ class Extension extends \Twig_Extension {
 	public function getTokenParsers(  ) {
 
 		return array(
-			new Loop_Token_Parser()
+			new Loop_Token_Parser(),
+			new Comments_Token_Parser(),
 		);
 	}
 
