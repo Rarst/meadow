@@ -80,6 +80,7 @@ This is primarily achieved by implementing custom Twig tags, abstracting away co
 	{% comments %}
 	<li>
 		{{ comment_text() }}
+	{# no &lt;/li&gt; - self-closing #}
 	{% endcomments %}
 </ul>
 ```
@@ -91,3 +92,4 @@ In [Hybrid Wing](https://github.com/Rarst/hybrid-wing) theme (work in progress):
  - [`index.twig`](https://github.com/Rarst/hybrid-wing/blob/master/index.twig)
   - [`single.twig`](https://github.com/Rarst/hybrid-wing/blob/master/single.twig)
    - [`single-post.twig`](https://github.com/Rarst/hybrid-wing/blob/master/single-post.twig)
+  - [`comments.twig`](https://github.com/Rarst/hybrid-wing/blob/master/comments.twig)
