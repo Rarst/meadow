@@ -80,7 +80,7 @@ This is primarily achieved by implementing custom Twig tags, abstracting away co
 	{% comments %}
 	<li>
 		{{ comment_text() }}
-	{# no &lt;/li&gt; - self-closing #}
+	{# no </li> - self-closing #}
 	{% endcomments %}
 </ul>
 ```
