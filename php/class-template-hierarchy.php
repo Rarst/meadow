@@ -167,12 +167,24 @@ class Template_Hierarchy {
 				$templates = array( "{$type}.twig" );
 		}
 
-		$template = locate_template( $templates );
+		$template = $this->locate_template( $templates );
 
 		if ( empty( $template ) ) {
 			$template = $fallback;
 		}
 
 		return apply_filters( 'meadow_query_template', $template, $type );
+	}
+
+	/**
+	 * Broken out for easier inheritance to customize lookup logic.
+	 *
+	 * @param array|string $templates
+	 *
+	 * @return string
+	 */
+	public function locate_template( $templates ) {
+
+		return locate_template( $templates );
 	}
 }
