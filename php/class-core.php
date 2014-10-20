@@ -1,11 +1,12 @@
 <?php
 
 namespace Rarst\Meadow;
+use Pimple\Container;
 
 /**
  * Main plugin class.
  */
-class Core extends \Pimple {
+class Core extends Container {
 
 	/**
 	 * @param array $values
