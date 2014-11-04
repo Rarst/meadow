@@ -73,6 +73,15 @@ This is primarily achieved by implementing custom Twig tags, abstracting away co
 {% endloop %}
 ```
 
+### Secondary Loop
+
+```twig
+{% loop { 'post_type' : 'book', 'orderby' : 'title' } %} {# expression for query arguments #}
+	<h2><a href="{{ the_permalink() }}">{{ the_title() }}</a></h2>
+	{{ the_content() }}
+{% endloop %}
+```
+
 ### Comments
 
 ```html+django
