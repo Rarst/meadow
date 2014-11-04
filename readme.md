@@ -30,19 +30,19 @@ Meadow follows conventions of WordPress [template hierarchy](https://codex.wordp
 
 Template Tags API (and PHP functions in general) are set up to work transparently from Twig templates:
 
-```html+django
+```twig
 {{ the_title() }}
 ```
 
 WordPress filters set up to be available as Twig filters:
 
-```html+django
+```twig
 {{ 'This is the title'|the_title }}
 ```
 
 Full range of Twig functionality is naturally available, including [template inheritance](http://twig.sensiolabs.org/doc/templates.html#template-inheritance):
 
-```html+django
+```twig
 {# single.twig #}
 {% extends 'index.twig' %}
 
@@ -53,7 +53,7 @@ Full range of Twig functionality is naturally available, including [template inh
 
 To inherit parent template in child theme prepend it with folder's name:
 
-```html+django
+```twig
 {# child-theme/index.twig #}
 {% extends 'parent-theme/index.twig' %}
 ```
@@ -66,7 +66,7 @@ This is primarily achieved by implementing custom Twig tags, abstracting away co
 
 ### Loop
 
-```html+django
+```twig
 {% loop %}
 	<h2><a href="{{ the_permalink() }}">{{ the_title() }}</a></h2>
 	{{ the_content() }}
@@ -76,7 +76,7 @@ This is primarily achieved by implementing custom Twig tags, abstracting away co
 ### Secondary Loop
 
 ```twig
-{% loop { 'post_type' : 'book', 'orderby' : 'title' } %} {# expression for query arguments #}
+{% loop { 'post_type' : 'book', 'orderby' : 'title' } %} {# expression for arguments #}
 	<h2><a href="{{ the_permalink() }}">{{ the_title() }}</a></h2>
 	{{ the_content() }}
 {% endloop %}
@@ -84,7 +84,7 @@ This is primarily achieved by implementing custom Twig tags, abstracting away co
 
 ### Comments
 
-```html+django
+```twig
 <ul class="comment-list">
 	{% comments %}
 	<li>
