@@ -28,17 +28,23 @@ Meadow follows conventions of WordPress [template hierarchy](https://codex.wordp
  - `{{ get_header() }}` will look for `header.twig` (with fallback to `header.php`)
  - and so on.
 
+### Template Tags
+
 Template Tags API (and PHP functions in general) are set up to work transparently from Twig templates:
 
 ```twig
 {{ the_title() }}
 ```
 
+### Filters
+
 WordPress filters set up to be available as Twig filters:
 
 ```twig
 {{ 'This is the title'|the_title }}
 ```
+
+### Template Inheritance
 
 Full range of Twig functionality is naturally available, including [template inheritance](http://twig.sensiolabs.org/doc/templates.html#template-inheritance):
 
