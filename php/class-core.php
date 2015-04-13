@@ -144,8 +144,7 @@ class Core extends Container {
 			/** @var \Twig_Environment $twig */
 			$twig = $this['twig.environment'];
 
-			// TODO context API
-			echo $twig->render( basename( $template ), array() );
+			echo $twig->render( basename( $template ), apply_filters( 'meadow_context', array() ) );
 
 			return false;
 		}
