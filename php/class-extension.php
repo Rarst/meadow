@@ -11,10 +11,6 @@ class Extension extends \Twig_Extension {
 		return 'meadow';
 	}
 
-	public function initRuntime( \Twig_Environment $environment ) {
-
-	}
-
 	public function getFunctions() {
 
 		$options = array(
