@@ -9,18 +9,18 @@ use Pimple\Container;
 class Core extends Container {
 
 	/**
-	 * @param array $values
+	 * @param array $values Optional array of services/options.
 	 */
 	public function __construct( $values = array() ) {
 
 		global $wp_version;
 
-		$defaults['twig.options']     = array();
-		$defaults['twig.directories'] = array();
+		$defaults                     = [];
+		$defaults['twig.options']     = [];
+		$defaults['twig.directories'] = [];
 
+		// This needs to be lazy or theme switchers and alike explode it.
 		$defaults['twig.loader'] = function ( $meadow ) {
-
-			// this needs to be lazy or theme switchers and alike explode it
 
 			$stylesheet_dir  = get_stylesheet_directory();
 			$template_dir    = get_template_directory();
@@ -30,7 +30,7 @@ class Core extends Container {
 				plugin_dir_path( __DIR__ ) . 'twig',
 			);
 
-			// enables explicit inheritance from parent theme in child
+			// Enables explicit inheritance from parent theme in child.
 			if ( $stylesheet_dir !== $template_dir ) {
 				$calculated_dirs[] = dirname( $template_dir );
 			}
@@ -78,18 +78,17 @@ class Core extends Container {
 			};
 		}
 
-
 		parent::__construct( array_merge( $defaults, $values ) );
 	}
 
 	/**
 	 * Handler for undefined functions in Twig to pass them through to PHP and buffer echoing versions.
 	 *
-	 * @param string $function_name
+	 * @param string $function_name Name of the function to handle.
 	 *
 	 * @return bool|\Twig_SimpleFunction
 	 */
-	static function undefined_function( $function_name ) {
+	public static function undefined_function( $function_name ) {
 
 		if ( function_exists( $function_name ) ) {
 			return new \Twig_SimpleFunction(
@@ -112,11 +111,11 @@ class Core extends Container {
 	/**
 	 * Handler for fallback to WordPress filters for undefined Twig filters in template.
 	 *
-	 * @param string $filter_name
+	 * @param string $filter_name Name of the filter to handle.
 	 *
 	 * @return bool|\Twig_SimpleFilter
 	 */
-	static function undefined_filter( $filter_name ) {
+	public static function undefined_filter( $filter_name ) {
 
 		return new \Twig_SimpleFilter(
 			$filter_name,
@@ -147,7 +146,7 @@ class Core extends Container {
 	}
 
 	/**
-	 * @param string $template
+	 * @param string $template Template found by loader.
 	 *
 	 * @return string|bool
 	 */
@@ -166,13 +165,13 @@ class Core extends Container {
 	}
 
 	/**
-	 * @param string $form
+	 * @param string $form Form markup.
 	 *
 	 * @return string
 	 */
 	public function get_search_form( $form ) {
 
-		// because first time it's action
+		// Because first time it's an action.
 		if ( ! empty( $form ) ) {
 			/** @var \Twig_Environment $twig */
 			$twig = $this['twig.environment'];
