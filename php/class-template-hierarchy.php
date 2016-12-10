@@ -6,7 +6,9 @@ namespace Rarst\Meadow;
  */
 class Template_Hierarchy {
 
+	/** @var string[] $template_types Template type names to be used for dynamic hooks. */
 	public $template_types = array(
+		'embed',
 		'404',
 		'search',
 		'taxonomy',
@@ -77,6 +79,25 @@ class Template_Hierarchy {
 		$templates = array();
 
 		switch ( $type ) {
+			case 'embed':
+
+				$object = get_queried_object();
+
+				if ( ! empty( $object->post_type ) ) {
+
+					$post_format = get_post_format( $object );
+
+					if ( $post_format ) {
+						$templates[] = "embed-{$object->post_type}-{$post_format}.twig";
+					}
+
+					$templates[] = "embed-{$object->post_type}.twig";
+				}
+
+				$templates[] = 'embed.twig';
+
+				break;
+
 			case 'taxonomy':
 				$term = get_queried_object();
 
