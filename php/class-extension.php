@@ -5,7 +5,7 @@ namespace Rarst\Meadow;
 /**
  * Meadow extension for Twig with WordPress specific functionality.
  */
-class Extension extends \Twig_Extension {
+class Extension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface {
 
 	public function getName() {
 		return 'meadow';
