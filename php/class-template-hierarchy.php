@@ -130,10 +130,6 @@ class Template_Hierarchy {
 				$templates[] = 'page.twig';
 				break;
 
-			case 'singular':
-				$templates = [ 'singular.twig' ];
-				break;
-
 			case 'category':
 			case 'tag':
 				$term = get_queried_object();
