@@ -7,10 +7,6 @@ namespace Rarst\Meadow;
  */
 class Extension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface {
 
-	public function getName() {
-		return 'meadow';
-	}
-
 	public function getFunctions() {
 
 		$options = array(
