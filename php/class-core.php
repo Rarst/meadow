@@ -13,6 +13,8 @@ class Core extends Container {
 	 */
 	public function __construct( $values = array() ) {
 
+		global $wp_version;
+
 		$defaults['twig.options']     = array();
 		$defaults['twig.directories'] = array();
 
@@ -62,9 +64,20 @@ class Core extends Container {
 			return $environment;
 		};
 
-		$defaults['hierarchy'] = function () {
-			return new Template_Hierarchy();
-		};
+		if ( version_compare( rtrim( $wp_version, '-src' ), '4.7', '>=' ) ) {
+
+			$defaults['hierarchy'] = function () {
+				return new Type_Template_Hierarchy();
+			};
+		} else {
+
+			trigger_error( 'Pre–WP 4.7 implementation of Meadow hierarchy is deprecated and will be removed in 1.0.', E_USER_DEPRECATED );
+
+			$defaults['hierarchy'] = function () {
+				return new Template_Hierarchy();
+			};
+		}
+
 
 		parent::__construct( array_merge( $defaults, $values ) );
 	}

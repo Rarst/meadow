@@ -3,6 +3,8 @@ namespace Rarst\Meadow;
 
 /**
  * Augment native template hierarchy with non-PHP template processing.
+ *
+ * @deprecated 0.2:1.0 Deprecated in favor of better hierarchy filter in WP 4.7+.
  */
 class Template_Hierarchy {
 
