@@ -1,16 +1,14 @@
 # Meadow — WordPress Templating DSL
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Rarst/meadow/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Rarst/meadow/?branch=master)
 
 Meadow is a theme templating solution, aiming to find a balance between native WordPress concepts and power of [Twig](http://twig.sensiolabs.org/) dedicated templating language.
-
-It is currently EXPERIMENTAL, treat it more like exploration and wishful thinking rather than hard promises.
 
 ## Installation
 
 Require package in your theme project with [Composer](https://getcomposer.org/):
 
 ```bash
-composer require rarst/meadow:dev-master --no-update
-composer update --no-dev
+composer require rarst/meadow
 ```
 
 Instantiate object some time during theme load:
@@ -108,3 +106,7 @@ In [Hybrid Wing](https://github.com/Rarst/hybrid-wing) theme (work in progress):
   - [`single.twig`](https://github.com/Rarst/hybrid-wing/blob/master/single.twig)
    - [`single-post.twig`](https://github.com/Rarst/hybrid-wing/blob/master/single-post.twig)
   - [`comments.twig`](https://github.com/Rarst/hybrid-wing/blob/master/comments.twig)
+
+## License
+
+MIT
