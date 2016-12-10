@@ -15,6 +15,7 @@ class Template_Hierarchy {
 		'attachment',
 		'single',
 		'page',
+		'singular',
 		'category',
 		'tag',
 		'author',
@@ -107,7 +108,7 @@ class Template_Hierarchy {
 
 			case 'page':
 				$page_id  = get_queried_object_id();
-				$template = get_page_template_slug();
+//				$template = get_page_template_slug();
 				$pagename = get_query_var( 'pagename' );
 
 				if ( ! $pagename && $page_id ) {
@@ -127,6 +128,10 @@ class Template_Hierarchy {
 					$templates[] = "page-{$page_id}.twig";
 
 				$templates[] = 'page.twig';
+				break;
+
+			case 'singular':
+				$templates = [ 'singular.twig' ];
 				break;
 
 			case 'category':
