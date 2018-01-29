@@ -32,7 +32,7 @@ class Core extends Container {
 
 			// Enables explicit inheritance from parent theme in child.
 			if ( $stylesheet_dir !== $template_dir ) {
-				$calculated_dirs[] = dirname( $template_dir );
+				$calculated_dirs[] = \dirname( $template_dir );
 			}
 
 			$directories = array_unique(
@@ -55,7 +55,7 @@ class Core extends Container {
 			$environment->registerUndefinedFunctionCallback( $meadow['twig.undefined_function'] );
 			$environment->registerUndefinedFilterCallback( $meadow['twig.undefined_filter'] );
 
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			if ( \defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 				$debug_extension = new \Twig_Extension_Debug();
 				$environment->addExtension( $debug_extension );
 				$environment->enableDebug();
@@ -90,13 +90,13 @@ class Core extends Container {
 	 */
 	public static function undefined_function( $function_name ) {
 
-		if ( function_exists( $function_name ) ) {
+		if ( \function_exists( $function_name ) ) {
 			return new \Twig_Function(
 				$function_name,
 				function () use ( $function_name ) {
 
 					ob_start();
-					$return = call_user_func_array( $function_name, func_get_args() );
+					$return = \call_user_func_array( $function_name, \func_get_args() );
 					$echo   = ob_get_clean();
 
 					return empty( $echo ) ? $return : $echo;
@@ -176,7 +176,7 @@ class Core extends Container {
 			/** @var \Twig_Environment $twig */
 			$twig = $this['twig.environment'];
 
-			return $twig->render( 'searchform.twig', array() );
+			return $twig->render( 'searchform.twig' );
 		}
 
 		return $form;

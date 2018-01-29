@@ -10,7 +10,7 @@ class Comments_Token_Parser extends \Twig_TokenParser {
 	 *
 	 * @param Twig_Token $token
 	 *
-	 * @return Loop_Node
+	 * @return Comments_Node
 	 */
 	public function parse( Twig_Token $token ) {
 

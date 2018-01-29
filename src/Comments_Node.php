@@ -7,7 +7,7 @@ use Twig_Compiler;
 /**
  * Compiles comments node into wp_list_comments() call with markup in callback.
  */
-class Comments_Node extends \Twig_Node {
+class Comments_Node extends Twig_Node {
 	/**
 	 * @param Twig_Compiler $compiler
 	 */

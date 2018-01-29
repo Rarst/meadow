@@ -48,8 +48,9 @@ class Extension extends \Twig_Extension implements \Twig_Extension_GlobalsInterf
 
 		$templates = array();
 
-		if ( ! empty( $name ) )
+		if ( ! empty( $name ) ) {
 			$templates[] = "{$slug}-{$name}.twig";
+		}
 
 		$templates[] = "{$slug}.twig";
 
@@ -97,7 +98,7 @@ class Extension extends \Twig_Extension implements \Twig_Extension_GlobalsInterf
 			do_action( 'get_' . $type, $name );
 		} catch ( \Twig_Error_Loader $e ) {
 			ob_start();
-			call_user_func( 'get_' . $type, $name );
+			\call_user_func( 'get_' . $type, $name );
 			$return = ob_get_clean();
 		}
 

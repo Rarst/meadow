@@ -61,8 +61,9 @@ class Template_Hierarchy {
 		if ( is_attachment() ) {
 			global $posts;
 
-			if ( ! empty( $posts ) && isset( $posts[0]->post_mime_type ) )
+			if ( ! empty( $posts ) && isset( $posts[0]->post_mime_type ) ) {
 				$this->mime_type = explode( '/', $posts[0]->post_mime_type );
+			}
 
 			add_filter( "{$this->mime_type[0]}_template", array( $this, 'query_template' ) );
 			add_filter( "{$this->mime_type[1]}_template", array( $this, 'query_template' ) );
@@ -123,8 +124,9 @@ class Template_Hierarchy {
 			case 'single':
 				$object = get_queried_object();
 
-				if ( $object )
+				if ( $object ) {
 					$templates[] = "single-{$object->post_type}.twig";
+				}
 
 				$templates[] = 'single.twig';
 				break;
@@ -144,11 +146,13 @@ class Template_Hierarchy {
 //				if ( $template && 0 === validate_file( $template ) )
 //					$templates[] = $template;
 
-				if ( $pagename )
+				if ( $pagename ) {
 					$templates[] = "page-{$pagename}.twig";
+				}
 
-				if ( $page_id )
+				if ( $page_id ) {
 					$templates[] = "page-{$page_id}.twig";
+				}
 
 				$templates[] = 'page.twig';
 				break;
@@ -179,7 +183,7 @@ class Template_Hierarchy {
 			case 'archive':
 				$post_types = array_filter( (array) get_query_var( 'post_type' ) );
 
-				if ( count( $post_types ) == 1 ) {
+				if ( \count( $post_types ) === 1 ) {
 					$post_type   = reset( $post_types );
 					$templates[] = "archive-{$post_type}.twig";
 				}
