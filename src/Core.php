@@ -132,7 +132,7 @@ class Core extends Container {
 		/** @var Template_Hierarchy $hierarchy */
 		$hierarchy = $this['hierarchy'];
 		$hierarchy->enable();
-		add_filter( 'template_include', array( $this, 'template_include' ) );
+		add_filter( 'template_include', [ $this, 'template_include' ], 100 );
 		add_filter( 'get_search_form', array( $this, 'get_search_form' ), 9 );
 	}
 
@@ -141,7 +141,7 @@ class Core extends Container {
 		/** @var Template_Hierarchy $hierarchy */
 		$hierarchy = $this['hierarchy'];
 		$hierarchy->disable();
-		remove_filter( 'template_include', array( $this, 'template_include' ) );
+		remove_filter( 'template_include', [ $this, 'template_include' ], 100 );
 		remove_filter( 'get_search_form', array( $this, 'get_search_form' ), 9 );
 	}
 
@@ -158,7 +158,7 @@ class Core extends Container {
 
 			echo $twig->render( basename( $template ), apply_filters( 'meadow_context', array() ) );
 
-			return false;
+			die();
 		}
 
 		return $template;
