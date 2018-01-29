@@ -27,7 +27,7 @@ class Core extends Container {
 			$calculated_dirs = array(
 				$stylesheet_dir,
 				$template_dir,
-				plugin_dir_path( __DIR__ ) . 'twig',
+				plugin_dir_path( __DIR__ ) . 'src/twig',
 			);
 
 			// Enables explicit inheritance from parent theme in child.
