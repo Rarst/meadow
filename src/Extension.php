@@ -18,7 +18,7 @@ class Extension extends \Twig_Extension implements \Twig_Extension_GlobalsInterf
 		$functions = array();
 
 		foreach ( array( 'get_header', 'get_footer', 'get_sidebar', 'get_template_part', 'get_search_form', 'comments_template' ) as $function ) {
-			$functions[] = new \Twig_SimpleFunction( $function, array( $this, $function ), $options );
+			$functions[] = new \Twig_Function( $function, array( $this, $function ), $options );
 		}
 
 		return $functions;

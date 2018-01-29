@@ -86,12 +86,12 @@ class Core extends Container {
 	 *
 	 * @param string $function_name Name of the function to handle.
 	 *
-	 * @return bool|\Twig_SimpleFunction
+	 * @return bool|\Twig_Function
 	 */
 	public static function undefined_function( $function_name ) {
 
 		if ( function_exists( $function_name ) ) {
-			return new \Twig_SimpleFunction(
+			return new \Twig_Function(
 				$function_name,
 				function () use ( $function_name ) {
 
@@ -113,11 +113,11 @@ class Core extends Container {
 	 *
 	 * @param string $filter_name Name of the filter to handle.
 	 *
-	 * @return bool|\Twig_SimpleFilter
+	 * @return bool|\Twig_Filter
 	 */
 	public static function undefined_filter( $filter_name ) {
 
-		return new \Twig_SimpleFilter(
+		return new \Twig_Filter(
 			$filter_name,
 			function () use ( $filter_name ) {
 
