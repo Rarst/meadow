@@ -74,6 +74,7 @@ class Core extends Container {
 			trigger_error( 'Pre–WP 4.7 implementation of Meadow hierarchy is deprecated and will be removed in 1.0.', E_USER_DEPRECATED );
 
 			$defaults['hierarchy'] = function () {
+				/** @noinspection PhpDeprecationInspection */
 				return new Template_Hierarchy();
 			};
 		}
