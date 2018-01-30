@@ -61,9 +61,7 @@ class Type_Template_Hierarchy {
 		$twig_templates = [];
 
 		foreach ( $templates as $php_template ) {
-
-			if ( '.php' === substr( $php_template, \strlen( $php_template ) - 4 ) ) {
-
+			if ( '.php' === substr( $php_template, - 4 ) ) {
 				$twig_templates[] = substr( $php_template, 0, - 4 ) . '.twig';
 			}
 		}
