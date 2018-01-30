@@ -108,7 +108,7 @@ class Extension extends \Twig_Extension implements \Twig_Extension_GlobalsInterf
 	public function comments_template( \Twig_Environment $env, $context, $file = 'comments.twig', $separate_comments = false ) {
 
 		try {
-			$env->loadTemplate( $file );
+			$env->load( $file );
 		} catch ( \Twig_Error_Loader $e ) {
 			ob_start();
 			comments_template( '/comments.php', $separate_comments );
