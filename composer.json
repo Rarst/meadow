@@ -7,7 +7,7 @@
 	"authors"     : [
 		{
 			"name"    : "Andrey Savchenko",
-			"homepage": "http://www.Rarst.net/"
+			"homepage": "https://www.Rarst.net/"
 		}
 	],
 	"support"     : {
@@ -16,7 +16,7 @@
 	"require"     : {
 		"php": ">=7.0",
 		"pimple/pimple": "^3.2.3",
-		"twig/twig": "^2.4.4"
+		"twig/twig": "^2.6"
 	},
 	"require-dev": {
 		"pds/skeleton": "^1.0"

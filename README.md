@@ -1,5 +1,10 @@
 # Meadow — WordPress Templating DSL
+
+_Write WordPress theme templates with familiar ease and modern features._
+
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Rarst/meadow/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Rarst/meadow/?branch=master)
+[![Version](https://img.shields.io/packagist/v/rarst/meadow.svg?label=version)](https://packagist.org/packages/rarst/meadow)
+[![PHP required](https://img.shields.io/packagist/php-v/rarst/meadow.svg)](https://packagist.org/packages/rarst/meadow)
 [![PDS Skeleton](https://img.shields.io/badge/pds-skeleton-blue.svg?style=flat-square)](https://github.com/php-pds/skeleton)
 
 Meadow is a theme templating solution, aiming to find a balance between native WordPress concepts and power of [Twig](http://twig.sensiolabs.org/) dedicated templating language.

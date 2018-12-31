@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## 0.3 - 2018-12-31
+
 ### Changed
 - code structure for PDS and PSR-4.
 - dependencies (Twig 2+, PHP 7+).
